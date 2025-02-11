@@ -31,9 +31,9 @@ cd NodeGo-Auto-Bot
 echo "Installing dependencies..."
 npm install
 
-# Step 8: 提示输入 token 并保存到 data.txt 文件
-echo "Please enter your tokens (one per line). Press Ctrl+D when done:"
-cat > data.txt
+# Step 8: 自动输入 token 并保存到 data.txt 文件
+TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1b2d1b3h1bjdAZ21haWwuY29tIiwidXNlcklkIjoiNjdhYjAyYTJmMGVjOWJmNGZmYzAyNzY5IiwiaWF0IjoxNzM5MjYwODkxLCJleHAiOjE3NDE4NTI4OTF9.lTSYmXv-VyDCbHVOzFGFX7t7OckYBPEXfbujiAEsqlw"
+echo $TOKEN > data.txt
 
 # Step 9: （可选）创建 proxies.txt 文件
 echo "Creating proxies.txt file..."
