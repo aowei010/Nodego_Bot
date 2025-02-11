@@ -35,12 +35,8 @@ npm install
 TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1b2d1b3h1bjdAZ21haWwuY29tIiwidXNlcklkIjoiNjdhYjAyYTJmMGVjOWJmNGZmYzAyNzY5IiwiaWF0IjoxNzM5MjYwODkxLCJleHAiOjE3NDE4NTI4OTF9.lTSYmXv-VyDCbHVOzFGFX7t7OckYBPEXfbujiAEsqlw"
 echo $TOKEN > data.txt
 
-# Step 9: （可选）创建 proxies.txt 文件
-echo "Creating proxies.txt file..."
-echo -e "http://ip1:port1\nsocks5://ip2:port2\nsocks4://ip3:port3" > proxies.txt
+# Step 9: 创建一个新的 screen 会话并运行 NodeGo-Auto-Bot 脚本
+echo "Starting NodeGo-Auto-Bot in a new screen session..."
+screen -dmS bot_session bash -c 'node index.js'
 
-# Step 10: 创建一个新的 tmux 会话并运行 NodeGo-Auto-Bot 脚本
-echo "Starting NodeGo-Auto-Bot in a new tmux session..."
-tmux new-session -d -s bot_session 'node index.js'
-
-echo "NodeGo-Auto-Bot installation complete! Use 'tmux attach-session -t bot_session' to reattach to the session."
+echo "NodeGo-Auto-Bot installation complete! Use 'screen -r bot_session' to reattach to the session."
