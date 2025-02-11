@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Step 1: 安装 nvm
+echo "Installing nvm..."
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+# Step 2: 加载 nvm
+echo "Loading nvm..."
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Step 3: 安装指定版本的 Node.js (Node.js 16)
+echo "Installing Node.js version 16..."
+nvm install 16
+
+# Step 4: 使用指定版本的 Node.js
+echo "Using Node.js version 16..."
+nvm use 16
+
+# Step 5: 验证安装
+echo "Verifying Node.js and npm installation..."
+node -v
+npm -v
+
+# Step 6: 克隆 NodeGo-Auto-Bot 仓库
+echo "Cloning NodeGo-Auto-Bot repository..."
+git clone https://github.com/airdropinsiders/NodeGo-Auto-Bot.git
+cd NodeGo-Auto-Bot
+
+# Step 7: 安装依赖
+echo "Installing dependencies..."
+npm install
+
+# Step 8: 提示输入 token 并保存到 data.txt 文件
+echo "Please enter your tokens (one per line). Press Ctrl+D when done:"
+cat > data.txt
+
+# Step 9: （可选）创建 proxies.txt 文件
+echo "Creating proxies.txt file..."
+echo -e "http://ip1:port1\nsocks5://ip2:port2\nsocks4://ip3:port3" > proxies.txt
+
+# Step 10: 创建一个新的 tmux 会话并运行 NodeGo-Auto-Bot 脚本
+echo "Starting NodeGo-Auto-Bot in a new tmux session..."
+tmux new-session -d -s bot_session 'node index.js'
+
+echo "NodeGo-Auto-Bot installation complete! Use 'tmux attach-session -t bot_session' to reattach to the session."
